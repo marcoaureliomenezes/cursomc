@@ -9,47 +9,41 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
-
 @Entity
 public class Cidade implements Serializable {
-
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer Id;
-	private String Nome;
-	
+	private Integer id;
+	private String nome;
 	@ManyToOne
 	@JoinColumn(name="estado_id")
 	private Estado estado;
 	
-	public Cidade() {
-		
-	}
-
+//	Constructors
+	public Cidade() {	}
 	public Cidade(Integer id, String nome, Estado estado) {
 		super();
-		Id = id;
-		Nome = nome;
+		this.id = id;
+		this.nome = nome;
 		this.estado = estado;
 	}
-
-	public Integer getId() {
-		return Id;
+//	Getters and setters for id
+	public Integer getid() {
+		return id;
 	}
 
-	public void setId(Integer id) {
-		Id = id;
+	public void setid(Integer id) {
+		this.id = id;
 	}
 
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 
 	public Estado getEstado() {
@@ -59,15 +53,14 @@ public class Cidade implements Serializable {
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
-
+//  Hash and equals methods
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,10 +70,10 @@ public class Cidade implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cidade other = (Cidade) obj;
-		if (Id == null) {
-			if (other.Id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!Id.equals(other.Id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}

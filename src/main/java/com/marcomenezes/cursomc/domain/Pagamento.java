@@ -17,32 +17,26 @@ import com.marcomenezes.cursomc.domain.enums.EstadoPagamento;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Pagamento implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	private Integer id;
 	private Integer estado;
-	
 	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	@MapsId
 	private Pedido pedido;
 	
-	public Pagamento() {
-		
-	}
-
+//	Constructors
+	public Pagamento() {	}
 	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estado = estado.getCod();
+		this.estado = (this.estado==null) ? null : estado.getCod();
 		this.pedido = pedido;
 	}
 	
-	
-
+//	Getters and setters for id, estadoPagamento, pedido and 
 	public Integer getId() {
 		return id;
 	}
@@ -66,11 +60,7 @@ public abstract class Pagamento implements Serializable {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+//	Hash and equals methods
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -78,7 +68,6 @@ public abstract class Pagamento implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -94,7 +83,5 @@ public abstract class Pagamento implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 }

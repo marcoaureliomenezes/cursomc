@@ -19,14 +19,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable {
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
 	private String nome;
 	private Double preco;
-	
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
@@ -39,15 +38,15 @@ public class Produto implements Serializable {
 	@OneToMany(mappedBy="id.produto")
 	private Set<ItemPedido> itens = new HashSet<>();
 	
-	public Produto() {}
-
+//	Constructors
+	public Produto() {	}
 	public Produto(Integer id, String nome, Double preco) {
 		super();
-		Id = id;
+		this.id = id;
 		this.nome = nome;
 		this.preco = preco;
 	}
-	
+//	GEtters and setters for peridos's list, id, nome
 	@JsonIgnore
 	public List<Pedido> getPedidos() {
 		List<Pedido> lista = new ArrayList<>();
@@ -56,54 +55,44 @@ public class Produto implements Serializable {
 		}
 		return lista;
 	}
-
 	public Integer getId() {
-		return Id;
+		return id;
 	}
-
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 	public Double getPreco() {
 		return preco;
 	}
-
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
-
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
-
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
-	
 	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
+//	Hash and equals methods
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Id == null) ? 0 : Id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -113,14 +102,11 @@ public class Produto implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		if (Id == null) {
-			if (other.Id != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!Id.equals(other.Id))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-
-	
-	
 }

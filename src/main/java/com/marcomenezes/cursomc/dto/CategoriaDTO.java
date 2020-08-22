@@ -17,27 +17,22 @@ public class CategoriaDTO implements Serializable{
 	@Length(min=5, max=80, message="tamanho deve ser entre 5 e 80 caracteres.")
 	private String nome;
 	
-	public CategoriaDTO() {
-	
-	}
-
+//	Constructors
+	public CategoriaDTO() {	}
 	public CategoriaDTO(Categoria obj) {
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 	}
-	
+//	Getters and setters for id and nome
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
