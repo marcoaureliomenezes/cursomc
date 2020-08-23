@@ -17,7 +17,6 @@ import com.marcomenezes.cursomc.domain.Endereco;
 import com.marcomenezes.cursomc.domain.enums.TipoCliente;
 import com.marcomenezes.cursomc.dto.ClienteDTO;
 import com.marcomenezes.cursomc.dto.ClienteNewDTO;
-import com.marcomenezes.cursomc.repositories.CidadeRepository;
 import com.marcomenezes.cursomc.repositories.ClienteRepository;
 import com.marcomenezes.cursomc.repositories.EnderecoRepository;
 import com.marcomenezes.cursomc.services.exceptions.DataIntegrityException;
@@ -28,8 +27,6 @@ public class ClienteService {
 	
 	@Autowired
 	private ClienteRepository repo;
-	@Autowired
-	private CidadeRepository CidadeRepository;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	
