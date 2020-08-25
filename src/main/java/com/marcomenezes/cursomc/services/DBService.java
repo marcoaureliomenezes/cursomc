@@ -20,6 +20,7 @@ import com.marcomenezes.cursomc.domain.PagamentoComCartao;
 import com.marcomenezes.cursomc.domain.Pedido;
 import com.marcomenezes.cursomc.domain.Produto;
 import com.marcomenezes.cursomc.domain.enums.EstadoPagamento;
+import com.marcomenezes.cursomc.domain.enums.Perfil;
 import com.marcomenezes.cursomc.domain.enums.TipoCliente;
 import com.marcomenezes.cursomc.repositories.CategoriaRepository;
 import com.marcomenezes.cursomc.repositories.CidadeRepository;
@@ -116,16 +117,29 @@ public class DBService {
 		est1.getCidades().addAll(Arrays.asList(cid1, cid2, cid3));
 		est2.getCidades().addAll(Arrays.asList(cid4, cid5, cid6));
 
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3, cid4, cid5, cid6));
 		
-		Cliente cli1 = new Cliente(null, "Maria Silva", "marcoaurelioreislima.@gmail.com", 
-									"36378912377", TipoCliente.PESSOAFISICA, pe.encode("123456"));
+		Cliente cli1 = new Cliente(null, "Maria Silva", "marcoaurelioreislima@gmail.com", 
+									"36378912377", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("27363323","93838393"));
+		
+		Cliente cli2 = new Cliente(null, "Ana Costa", "marco_aurelio_reis@yahoo.com.br",
+									"31628382740", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		cli2.addPerfil(Perfil.ADMIN);
+		cli2.getTelefones().addAll(Arrays.asList("37155662","997652392"));
+		
+		
 		
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 203", "Jardim", "38220834", cli1, cid1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, cid6);
+		Endereco e3 = new Endereco(null, "Rua da Quebrada", "420", "Sala 12", "Morro Vermelho", "01509001", cli2, cid4);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
 		
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
@@ -150,17 +164,9 @@ public class DBService {
 		p1.getItens().addAll(Arrays.asList(ip1));
 		p2.getItens().addAll(Arrays.asList(ip3));
 		p3.getItens().addAll(Arrays.asList(ip2));
-		
-		
-		estadoRepository.saveAll(Arrays.asList(est1, est2));
-		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3, cid4, cid5, cid6));
-		
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
-		
+				
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
-		
 		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 }
