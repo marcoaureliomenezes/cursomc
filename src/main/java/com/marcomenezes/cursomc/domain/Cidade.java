@@ -30,7 +30,7 @@ public class Cidade implements Serializable {
 		this.estado = estado;
 	}
 //	Getters and setters for id
-	public Integer getid() {
+	public Integer getId() {
 		return id;
 	}
 
